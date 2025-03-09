@@ -1,22 +1,21 @@
 import asyncio
-import tkinter as tk
-
+from tkinter import *
+from tkinter import ttk
 from async_tkinter_loop import async_handler, async_mainloop
 
 
-async def counter():
-    i = 0
-    while True:
-        i += 1
-        label.config(text=str(i))
-        await asyncio.sleep(1.0)
+root = Tk()
+root.title("PyChat")
+#label = tk.Label(root)
+#label.pack()
 
+mainframe = ttk.Frame(root, padding="3 3 12 12")
+mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
+root.columnconfigure(0, weight=1)
+root.rowconfigure(0, weight=1)
+textbox = Text(root, width=120, height=10)
 
-root = tk.Tk()
-label = tk.Label(root)
-label.pack()
-
-tk.Button(root, text="Start", command=async_handler(counter)).pack()
+#tk.Button(root, text="Start", command=async_handler(counter)).pack()
 
 if __name__ == "__main__":
     async_mainloop(root)
